@@ -49,6 +49,7 @@ function CommentList({ product_id }) {
         {
           text: newComment,
           product: product_id,
+          author_email: userInfo.email,
         },
         config
       )
