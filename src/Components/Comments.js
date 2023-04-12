@@ -45,7 +45,7 @@ function CommentList({ product_id }) {
     };
     axios
       .post(
-        `http://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/add/`,
+        `https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/add/`,
         {
           text: newComment,
           product: product_id,
