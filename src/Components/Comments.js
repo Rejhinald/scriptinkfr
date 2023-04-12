@@ -16,7 +16,7 @@ function CommentList({ product_id }) {
         },
       };
       axios
-        .get(`/products/${product_id}/comments/`, config)
+        .get(`https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/`, config)
         .then((response) => {
           setComments(response.data);
         });
@@ -30,7 +30,7 @@ function CommentList({ product_id }) {
       },
     };
     axios
-      .delete(`/products/${product_id}/comments/${comment_id}/delete/`, config)
+      .delete(`https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/${comment_id}/delete/`, config)
       .then(() => {
         setComments(comments.filter((comment) => comment.id !== comment_id));
       });
@@ -45,7 +45,7 @@ function CommentList({ product_id }) {
     };
     axios
       .post(
-        `/products/${product_id}/comments/add/`,
+        `https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/add/`,
         {
           text: newComment,
           product: product_id,

@@ -24,7 +24,7 @@ function Tier3ContentsScreen() {
 
   useEffect(() => {
     async function fetchTierProducts() {
-      const { data } = await axios.get(`/api/tierproducts/3`);
+      const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/tierproducts/3`);
       setTierProducts(data);
     }
     fetchTierProducts();

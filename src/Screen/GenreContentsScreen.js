@@ -26,11 +26,11 @@ function GenreContentsScreen() {
 
   useEffect(() => {
     async function fetchGenreData() {
-      const { data } = await axios.get(`/api/genres/${id}`);
+      const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/genres/${id}`);
       setGenre(data);
     }
     async function fetchGenreProducts() {
-      const { data } = await axios.get(`/api/genreproducts/${id}`);
+      const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/genreproducts/${id}`);
       setGenreProducts(data);
     }
     fetchGenreData();

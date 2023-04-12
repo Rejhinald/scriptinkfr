@@ -30,7 +30,7 @@ export const addAccount = (account) => async (dispatch) => {
       type: ACCOUNT_ADD_REQUEST,
     });
 
-    const { data } = await axios.post("/auth/register/", account); //create a new product
+    const { data } = await axios.post("https://scriptinkbk.pythonanywhere.com/auth/register/", account); //create a new product
 
     dispatch({
       type: ACCOUNT_ADD_SUCCESS,
@@ -60,7 +60,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "auth/login/",
+      "https://scriptinkbk.pythonanywhere.com/auth/login/",
       { email: email, password: password },
       config
     );
@@ -104,7 +104,7 @@ export const updateAccount = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/auth/updateuser/`, user, config);
+    const { data } = await axios.put(`https://scriptinkbk.pythonanywhere.com/auth/updateuser/`, user, config);
 
     dispatch({
       type: ACCOUNT_UPDATE_SUCCESS,
@@ -157,7 +157,7 @@ export const updateSubscriptionId =
       };
 
       const { data } = await axios.put(
-        "auth/subscriptionId/",
+        "https://scriptinkbk.pythonanywhere.com/auth/subscriptionId/",
         updatedUser,
         config
       );
@@ -209,7 +209,7 @@ export const paymentUserSuccess = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put("/auth/updatepayment/", user, config); //create a new product
+    const { data } = await axios.put("https://scriptinkbk.pythonanywhere.com/auth/updatepayment/", user, config); //create a new product
 
     dispatch({
       type: USER_PAYMENT_SUCCESS,
@@ -255,7 +255,7 @@ export const cancelSubscriptionUser = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put("/auth/cancelsubscription/", user, config); 
+    const { data } = await axios.put("https://scriptinkbk.pythonanywhere.com/auth/cancelsubscription/", user, config); 
 
     dispatch({
       type: CANCEL_SUBSCRIPTION_SUCCESS,
@@ -301,7 +301,7 @@ export const cancelSubscription = (id, user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/auth/cancelsubscription/${id}`, user , config); 
+    const { data } = await axios.put(`https://scriptinkbk.pythonanywhere.com/auth/cancelsubscription/${id}`, user , config); 
 
     dispatch({
       type: CANCEL_SUBSCRIPTION_SUCCESS,
@@ -334,7 +334,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.access}`,
       },
     };
-    const { data } = await axios.get(`/auth/user/${id}`, config);
+    const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/auth/user/${id}`, config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: {
@@ -373,7 +373,7 @@ export const listUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/auth/userlist", config); 
+    const { data } = await axios.get("https://scriptinkbk.pythonanywhere.com/auth/userlist", config); 
     dispatch({
       type: USER_LIST_SUCCESS,
       payload: data,
@@ -406,7 +406,7 @@ export const updateUserInfo = (id, user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/auth/updateuserinfo/${id}`, user, config, );
+    const { data } = await axios.put(`https://scriptinkbk.pythonanywhere.com/auth/updateuserinfo/${id}`, user, config, );
 
     dispatch({
       type: ACCOUNT_UPDATE_SUCCESS,

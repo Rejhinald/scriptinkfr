@@ -14,7 +14,7 @@ export const listTiers = () => async (dispatch) => {
       type: TIER_LIST_REQUEST,
     });
 
-    const { data } = await axios.get("/api/tiers"); 
+    const { data } = await axios.get("https://scriptinkbk.pythonanywhere.com/api/tiers"); 
 
     dispatch({
       type: TIER_LIST_SUCCESS,
@@ -37,7 +37,7 @@ export const listTierProducts = (id) => async (dispatch) => {
       type: TIER_PRODUCTS_REQUEST,
     });
 
-    const { data } = await axios.get(`/api/tierproducts/${id}`);
+    const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/tierproducts/${id}`);
 
     dispatch({
       type: TIER_PRODUCTS_SUCCESS,

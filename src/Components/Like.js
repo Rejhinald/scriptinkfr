@@ -23,7 +23,7 @@ function LikeButton({ product_id }) {
       return;
     }
     axios
-      .put(`/api/products/${product_id}/like/`)
+      .put(`https://scriptinkbk.pythonanywhere.com/api/products/${product_id}/like/`)
       .then((response) => {
         setLikes(response.data.likes);
         setHasLiked(true);
@@ -45,7 +45,7 @@ function LikeButton({ product_id }) {
       return;
     }
     axios
-      .put(`/api/products/${product_id}/unlike/`)
+      .put(`https://scriptinkbk.pythonanywhere.com/api/products/${product_id}/unlike/`)
       .then((response) => {
         setLikes(response.data.likes);
         setHasLiked(false);

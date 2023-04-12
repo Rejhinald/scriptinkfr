@@ -17,7 +17,7 @@ export const listGenres = () => async (dispatch) => {
       type: GENRE_LIST_REQUEST,
     });
 
-    const { data } = await axios.get("/api/genres"); 
+    const { data } = await axios.get("https://scriptinkbk.pythonanywhere.com/api/genres"); 
 
     dispatch({
       type: GENRE_LIST_SUCCESS,
@@ -40,7 +40,7 @@ export const listGenreProducts = (id) => async (dispatch) => {
       type: GENRE_PRODUCTS_REQUEST,
     });
 
-    const { data } = await axios.get(`/api/genreproducts/${id}`);
+    const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/genreproducts/${id}`);
 
     dispatch({
       type: GENRE_PRODUCTS_SUCCESS,
@@ -63,7 +63,7 @@ export const addGenre = (genre) => async (dispatch) => {
       type: GENRE_ADD_REQUEST,
     });
 
-    const { data } = await axios.post("/api/genres/create", genre); //create a new product
+    const { data } = await axios.post("https://scriptinkbk.pythonanywhere.com/api/genres/create", genre); //create a new product
 
     dispatch({
       type: GENRE_ADD_SUCCESS,
