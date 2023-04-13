@@ -116,7 +116,6 @@ function CommentList({ product_id }) {
                   )}
                 </button>
               }
-              ;
             </p>
           </div>
         </div>
