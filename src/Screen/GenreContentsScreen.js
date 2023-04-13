@@ -26,11 +26,15 @@ function GenreContentsScreen() {
 
   useEffect(() => {
     async function fetchGenreData() {
-      const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/genres/${id}`);
+      const { data } = await axios.get(
+        `https://scriptinkbk.pythonanywhere.com/api/genres/${id}`
+      );
       setGenre(data);
     }
     async function fetchGenreProducts() {
-      const { data } = await axios.get(`https://scriptinkbk.pythonanywhere.com/api/genreproducts/${id}`);
+      const { data } = await axios.get(
+        `https://scriptinkbk.pythonanywhere.com/api/genreproducts/${id}`
+      );
       setGenreProducts(data);
     }
     fetchGenreData();
@@ -68,22 +72,27 @@ function GenreContentsScreen() {
                 ? product
                 : product.name.toLowerCase().includes(search) ||
                     product.short_description.toLowerCase().includes(search) ||
-                    product.tier.toString().toLowerCase().includes(search.toLowerCase())
+                    product.tier
+                      .toString()
+                      .toLowerCase()
+                      .includes(search.toLowerCase());
             })
             .map((product) => (
               <Col md={3} key={product._id}>
                 <Card className="mb-4" style={{ height: "420px" }}>
-                    <Card.Img
-                      variant="top"
-                      src={product.image}
-                      alt={product.name}
-                      style={{ height: "250px", objectFit: "cover" }}
-                    />
-                    <Card.Body>
-                      <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>Tier: {product.tier}</Card.Text>
-                      <Card.Text>Short Description: {product.short_description}</Card.Text>
-                    </Card.Body>
+                  <Card.Img
+                    variant="top"
+                    src={product.image}
+                    alt={product.name}
+                    style={{ height: "250px", objectFit: "cover" }}
+                  />
+                  <Card.Body style={{ overflow: "hidden" }}>
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Text>Tier: {product.tier}</Card.Text>
+                    <Card.Text>
+                      Short Description: {product.short_description}
+                    </Card.Text>
+                  </Card.Body>
                 </Card>
               </Col>
             ))}
