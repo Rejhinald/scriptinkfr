@@ -63,7 +63,7 @@ export const addGenre = (genre) => async (dispatch) => {
       type: GENRE_ADD_REQUEST,
     });
 
-    const { data } = await axios.post("https://scriptinkbk.pythonanywhere.com/api/genres/create", genre); //create a new product
+    const { data } = await axios.post(`https://scriptinkbk.pythonanywhere.com/api/genres/create`, genre); //create a new product
 
     dispatch({
       type: GENRE_ADD_SUCCESS,
