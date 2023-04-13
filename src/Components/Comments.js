@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 function CommentList({ product_id }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // state for add comment loader
+  const [isDeleting, setIsDeleting] = useState(false); // state for delete comment loader
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -16,7 +18,10 @@ function CommentList({ product_id }) {
         },
       };
       axios
-        .get(`https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/`, config)
+        .get(
+          `https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/`,
+          config
+        )
         .then((response) => {
           setComments(response.data);
         });
@@ -24,20 +29,28 @@ function CommentList({ product_id }) {
   }, [product_id, userInfo.access]);
 
   function handleDelete(comment_id) {
+    setIsDeleting(true); // set loader to true
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.access}`,
       },
     };
     axios
-      .delete(`https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/${comment_id}/delete/`, config)
+      .delete(
+        `https://scriptinkbk.pythonanywhere.com/products/${product_id}/comments/${comment_id}/delete/`,
+        config
+      )
       .then(() => {
         setComments(comments.filter((comment) => comment.id !== comment_id));
+      })
+      .finally(() => {
+        setIsDeleting(false); // set loader back to false after request is completed
       });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.access}`,
@@ -60,6 +73,12 @@ function CommentList({ product_id }) {
         };
         setComments([...comments, comment]);
         setNewComment("");
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -86,9 +105,18 @@ function CommentList({ product_id }) {
                     }`,
                   }}
                 >
-                  Delete
+                  {isDeleting ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    "Delete"
+                  )}
                 </button>
               }
+              ;
             </p>
           </div>
         </div>
@@ -101,8 +129,12 @@ function CommentList({ product_id }) {
               value={newComment}
               onChange={(event) => setNewComment(event.target.value)}
             />
-            <button className="btn btn-primary" type="submit">
-              Add Comment
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Add Comment"}
             </button>
           </div>
         )}
